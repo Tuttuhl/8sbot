@@ -1,0 +1,15 @@
+{
+  "name": "8sbot",
+  "version": "1.0.0",
+  "description": "Discord bot which randomizes a selection of maps for a series in Cold War.",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Easton Tuttle",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0"
+  }
+}
