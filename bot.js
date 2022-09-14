@@ -7,6 +7,7 @@ const { prefix } = require('./config.json');
 client.on('message', receivedMessage);
 
 function receivedMessage(message) {
+    console.log(message.content)
     if (message.content === `${prefix}pick`) {
         const hardpointMaps = ['Moscow', 'Raid', 'Checkmate', 'Crossroads', 'Garrison'],
             searchMaps = ['Moscow', 'Raid', 'Checkmate', 'Miami', 'Garrison'],

@@ -3,7 +3,7 @@
  <img width=auto height=auto src="https://i.imgur.com/0dG2g3t.png" alt="Discord logo"></a>
 </p>
 
-<h3 align="center">Call of Duty 8s Bot</h3>
+<h3 align="center">8s Bot</h3>
 
 <div align="center">
 
@@ -13,7 +13,7 @@
 
 ---
 
-<p align="center"> 🤖 Streamline the process of team selection and map selection for an 8s series 🤖
+<p align="center"> 🤖 Call of Duty 8s bot built for Discord to automate the selection of captains, teams, and maps. 🤖
     <br> 
 </p>
 

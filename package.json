@@ -1,15 +1,17 @@
 {
   "name": "8sbot",
   "version": "1.0.0",
-  "description": "Discord bot which randomizes a selection of maps for a series in Cold War.",
+  "description": "Call of Duty 8s bot built for Discord to automate the selection of captains, teams, and maps.",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node bot.js"
   },
   "author": "Easton Tuttle",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
     "discord.js": "^12.5.1",
-    "dotenv": "^8.6.0"
+    "dotenv": "^8.6.0",
+    "request": "^2.88.2"
   }
 }
