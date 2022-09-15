@@ -3,7 +3,7 @@
  <img width=auto height=auto src="https://i.imgur.com/0dG2g3t.png" alt="Discord logo"></a>
 </p>
 
-<h3 align="center">8s Bot</h3>
+<h3 align="center">Call of Duty 8s Discord Bot</h3>
 
 <div align="center">
 
@@ -18,17 +18,14 @@
 </p>
 
 ## 📝 Table of Contents
-+ [Usage](#usage)
-+ [Getting Started](#getting_started)
-+ [Deploying your own bot](#deployment)
-+ [Built Using](#built_using)
-+ [TODO](../TODO.md)
-+ [Contributing](../CONTRIBUTING.md)
++ [Bot Usage](#usage)
++ [Development Tools](#dev_tools)
 + [Authors](#authors)
++ [References](#references)
 
-## 🎈 Usage <a name = "usage"></a>
+## 🎈 Bot Usage <a name = "usage"></a>
 
-To randomize teams and maps based on who is in the typing user's voice channel:
+To randomize teams based on who is in the typing user's voice channel:
 ```
 !pick
 ```
@@ -36,13 +33,8 @@ To randomize teams and maps based on who is in the typing user's voice channel:
 
 > Team 1: Tuttuhl,Kriptonic,Marcoso,NLFTEY
  Team 2: PDoh,EDazzle,Tony,Yogi
- Crossroads | Hardpoint 
- Garrison | Search and Destroy 
- Raid | Control 
- Raid | Hardpoint 
- Garrison | Search and Destroy
 
-To randomize captains and maps based on who is in the typing user's voice channel: 
+To randomize captains based on who is in the typing user's voice channel: 
 ```
 !caps
 ```
@@ -50,11 +42,6 @@ To randomize captains and maps based on who is in the typing user's voice channe
 
 > Captain 1: Marcoso
  Captain 2: Tony
- Crossroads | Hardpoint 
- Garrison | Search and Destroy 
- Raid | Control 
- Raid | Hardpoint 
- Garrison | Search and Destroy
 
  To randomize maps:
  ```
@@ -68,10 +55,14 @@ To randomize captains and maps based on who is in the typing user's voice channe
  Raid | Hardpoint 
  Garrison | Search and Destroy
 
-## ⛏️ Built Using <a name = "built_using"></a>
+## ⛏️ Development Tools <a name = "dev_tools"></a>
 + [Discord.js](https://discord.js.org) - Discord API Framework
 + [JavaScript](https://www.javascript.com)
++ [Heroku](https://www.heroku.com)
 
 ## ✍️ Authors <a name = "authors"></a>
-+ [Kriptonic](https://twitter.com/orale_chhchh) - Idea & Initial work
-+ [Tuttuhl](https://github.com/tuttuhl) - Team/Captain Randomizer
++ [Kriptonic](https://twitter.com/orale_chhchh) - Idea & Planning
++ [Tuttuhl](https://github.com/tuttuhl) - JS Development
+
+## References <a name = "references"></a>
++ [Deploying to Heroku](https://youtu.be/OFearuMjI4s)
