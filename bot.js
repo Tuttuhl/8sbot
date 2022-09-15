@@ -3,6 +3,8 @@ require('dotenv').config()
 const Discord = require('discord.js')
 const { prefix } = require('./config.json')
 const client = new Discord.Client()
+
+// Array of maps for each mode. Maybe flags for different CoD titles in the future?
 const hardpointMaps = ['Moscow', 'Raid', 'Checkmate', 'Apocalypse', 'Garrison']
 const searchMaps = ['Moscow', 'Raid', 'Checkmate', 'Miami', 'Express']
 const controlMaps = ['Raid', 'Checkmate', 'Garrison']
@@ -16,84 +18,101 @@ client.on('message', receivedMessage)
 function receivedMessage (message) {
   if (message.content === `${prefix}maps`) {
     // !maps = randomly select five maps from the map pool
+    sendMaps(message.channel)
+  } else if (message.content === `${prefix}all`) {
+    // !all = randomly select five maps from the map pool and choose two teams of four players.
+    if (message.member.voice.channel) {
+      if (message.member.voice.channel.members.size >= 8) {
+        const members = message.member.voice.channel.members
+        const teams = randomizeTeams(createPlayerList(members))
 
-    const messageEmbed = new Discord.MessageEmbed()
-      .setColor('#ffffff')
-      .setTitle('Randomized Maps')
-      .setDescription('Good luck to both teams and enjoy the match!')
-      .addField('Hardpoint', selectMap(hardpointMaps), true)
-      .addField('Search and Destroy', selectMap(searchMaps), true)
-      .addField('Control', selectMap(controlMaps), true)
-      .addField('Hardpoint', selectMap(hardpointMaps), true)
-      .addField('Search and Destroy', selectMap(searchMaps), true)
+        sendMaps()
+        sendTeams(teams)
+      } else {
+        sendError(message.channel,
+          'Please ensure there are at least 8 players in your voice channel!'
+        )
+      }
+    } else {
+      sendError(message.channel, 'Please join a voice channel first!')
+    }
+  } else if (message.content === `${prefix}pick`) {
+    // !pick = select two teams of four based on members in the same voice channel as the user who activated command.
+    if (message.member.voice.channel) {
+      if (message.member.voice.channel.members.size >= 8) {
+        const members = message.member.voice.channel.members
+        const teams = randomizeTeams(createPlayerList(members))
 
-    message.channel.send(messageEmbed)
+        sendTeams(message.channel, teams)
+      } else {
+        sendError(message.channel, 'Please ensure there are at least 8 players in your voice channel!')
+      }
+    } else {
+      sendError(message.channel, 'Please join a voice channel!')
+    }
+  } else if (message.content === `${prefix}caps`) {
+    // !caps = select two random captains from the members in the same voice channel as user who activated command.
+    if (message.member.voice.channel) {
+      if (message.member.voice.channel.members.size >= 2) {
+        const members = message.member.voice.channel.members
+        const captains = randomizeCaptains(createPlayerList(members))
+
+        sendCaptains(message.channel, captains)
+      } else {
+        sendError(message.channel, 'Please ensure there are at least 2 players in your voice channel!')
+      }
+    } else {
+      sendError(message.channel, 'Please join a voice channel!')
+    }
   }
-  // // !pick = select two teams of four based on members in the same voice channel as the user who activated command.
-  // if (message.content === `${prefix}pick`) {
-  //   if (message.member.voice.channel) {
-  //     const members = message.member.voice.channel.members
-  //     const teams = randomizeTeams(createPlayerList(members))
-  //     const messageEmbed = new Discord.MessageEmbed()
-  //       .setColor('#ffffff')
-  //       .setTitle('Randomized Teams')
-  //       .setDescription('Good luck to both teams and enjoy the match!')
-  //       .addField('Team 1', teams[0], true)
-  //       .addField('Team 2', teams[1], true)
+}
 
-  //     message.channel.send(messageEmbed)
-  //   }
-  // } else if (message.content === `${prefix}caps`) {
-  //   // !caps = select two random captains from the members in the same voice channel as user who activated command.
-  //   if (message.member.voice.channel) {
-  //     const members = message.member.voice.channel.members
-  //     const captains = randomizeCaptains(createPlayerList(members))
+// Send an error message in the Discord text channel.
+function sendError (channel, message) {
+  const messageEmbed = new Discord.MessageEmbed()
+    .setColor('#ff0000')
+    .setTitle('ERROR')
+    .setDescription(message)
 
-  //     const messageEmbed = new Discord.MessageEmbed()
-  //       .setColor('#ffffff')
-  //       .setTitle('Randomized Captains')
-  //       .setDescription('Choose wisely.')
-  //       .addField('First Captain', captains[0], true)
-  //       .addField('Second Captain', captains[1], true)
+  channel.send(messageEmbed)
+}
 
-  //     message.channel.send(messageEmbed)
-  //   }
-  // } else if (message.content === `${prefix}maps`) {
-  //   // !maps = randomly select five maps from the map pool
+// Send an embedded message with the maps in the Discord text channel.
+function sendMaps (channel) {
+  const messageEmbed = new Discord.MessageEmbed()
+    .setColor('#ffffff')
+    .setTitle('Randomized Maps')
+    .addField('Hardpoint', selectMap(hardpointMaps), true)
+    .addField('Search and Destroy', selectMap(searchMaps), true)
+    .addField('Control', selectMap(controlMaps), true)
+    .addField('Hardpoint', selectMap(hardpointMaps), true)
+    .addField('Search and Destroy', selectMap(searchMaps), true)
 
-  //   const messageEmbed = new Discord.MessageEmbed()
-  //     .setColor('#ffffff')
-  //     .setTitle('Randomized Maps')
-  //     .setDescription('Good luck to both teams and enjoy the match!')
-  //     .addField('Hardpoint', selectMap(hardpointMaps), true)
-  //     .addField('Search and Destroy', selectMap(searchMaps), true)
-  //     .addField('Control', selectMap(controlMaps), true)
-  //     .addField('Hardpoint', selectMap(hardpointMaps), true)
-  //     .addField('Search and Destroy', selectMap(searchMaps), true)
+  channel.send(messageEmbed)
+}
 
-  //   message.channel.send(messageEmbed)
-  // } else if (message.content === `${prefix}all`) {
-  //   // !all = randomly select five maps from the map pool and choose two teams of four players.
-  //   console.log(message.member.voice)
-  //   if (message.member.voice.channel) {
-  //     const members = message.member.voice.channel.members
-  //     const teams = randomizeTeams(createPlayerList(members))
+// Send an embedded message with the teams in the Discord text channel.
+function sendTeams (channel, teams) {
+  const messageEmbed = new Discord.MessageEmbed()
+    .setColor('#ffffff')
+    .setTitle('Randomized Teams')
+    .setDescription('Good luck to both teams and enjoy the match!')
+    .addField('Team 1', teams[0], true)
+    .addField('Team 2', teams[1], true)
 
-  //     const messageEmbed = new Discord.MessageEmbed()
-  //       .setColor('#ffffff')
-  //       .setTitle('Randomized Maps & Teams')
-  //       .setDescription('Good luck to both teams and enjoy the match!')
-  //       .addField('Team 1', teams[0], true)
-  //       .addField('Team 2', teams[1], true)
-  //       .addField('Hardpoint', selectMap(hardpointMaps), true)
-  //       .addField('Search and Destroy', selectMap(searchMaps), true)
-  //       .addField('Control', selectMap(controlMaps), true)
-  //       .addField('Hardpoint', selectMap(hardpointMaps), true)
-  //       .addField('Search and Destroy', selectMap(searchMaps), true)
+  channel.send(messageEmbed)
+}
 
-  //     message.channel.send(messageEmbed)
-  //   }
-  // }
+// Send an embedded message with the captains to the Discord text channel.
+function sendCaptains (channel, captains) {
+  const messageEmbed = new Discord.MessageEmbed()
+    .setColor('#ffffff')
+    .setTitle('Randomized Captains')
+    .setDescription('Choose wisely.')
+    .addField('First Captain', captains[0], true)
+    .addField('Second Captain', captains[1], true)
+
+  channel.send(messageEmbed)
 }
 
 // Randomly select a map from the array of maps given.
