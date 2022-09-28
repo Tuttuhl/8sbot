@@ -1,15 +1,4 @@
-<p align="center">
-  <a href="" rel="noopener">
- <img width=auto height=auto src="https://i.imgur.com/0dG2g3t.png" alt="Discord logo"></a>
-</p>
-
 <h3 align="center">Call of Duty 8s Discord Bot</h3>
-
-<div align="center">
-
-  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
-
-</div>
 
 ---
 
@@ -25,14 +14,29 @@
 
 ## 🎈 Bot Usage <a name = "usage"></a>
 
+To randomize teams and maps based on who is in the typing user's voice channel:
+```
+!all
+```
+### Example Output:
+
+> Team 1: Tuttuhl, Kriptonic, Marcoso, NLFTEY
+ Team 2: PDoh, EDazzle, Tony, Yogi
+
+ >Crossroads | Hardpoint 
+ Garrison | Search and Destroy 
+ Raid | Control 
+ Raid | Hardpoint 
+ Garrison | Search and Destroy
+
 To randomize teams based on who is in the typing user's voice channel:
 ```
 !pick
 ```
 ### Example Output:
 
-> Team 1: Tuttuhl,Kriptonic,Marcoso,NLFTEY
- Team 2: PDoh,EDazzle,Tony,Yogi
+> Team 1: Tuttuhl, Kriptonic, Marcoso, NLFTEY
+ Team 2: PDoh, EDazzle, Tony, Yogi
 
 To randomize captains based on who is in the typing user's voice channel: 
 ```
