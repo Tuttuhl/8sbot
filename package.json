@@ -1,6 +1,6 @@
 {
   "name": "8sbot",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Call of Duty 8s bot built for Discord to automate the selection of captains, teams, and maps.",
   "main": "bot.js",
   "scripts": {
