@@ -6,23 +6,27 @@ const client = new Discord.Client()
 
 // Array of maps for each mode. Maybe flags for different CoD titles in the future?
 const hardpointMaps = [
-  'Al Bagra Fortress',
-  'Breenburgh Hotel',
-  'Embassy',
-  'Mercado Las Almas',
-  'Zarqwa Hydroelectric'
+  'Hacienda',
+  'Red Card',
+  'Rewind',
+  'Skyline',
+  'Vault',
+  'Fringe'
 ]
+
 const searchMaps = [
-  'El Asilo',
-  'Breenburgh Hotel',
-  'Embassy',
-  'Farm 18',
-  'Mercado Las Almas'
+  'Dealership',
+  'Hacienda',
+  'Protocol',
+  'Fringe',
+  'Red Card',
+  'Rewind'
 ]
+
 const controlMaps = [
-  'Embassy',
-  'Mercado Las Almas',
-  'Breenburgh Hotel'
+  'Hacienda',
+  'Protocol',
+  'Vault'
 ]
 
 // Login to the client using the secret token.
