@@ -40,9 +40,9 @@ function receivedMessage (message) {
   } else if (message.content === `${prefix}all`) {
     // !all = randomly select five maps from the map pool and choose two teams of four players.
     if (message.member.voice.channel) {
-      if (message.member.voice.channel.members.size >= 8) {
-        const members = message.member.voice.channel.members
-        const teams = randomizeTeams(createPlayerList(members))
+      const players = createPlayerList(message.member.voice.channel.members)
+      if (players.length >= 8) {
+        const teams = randomizeTeams(players)
 
         sendMaps(message.channel)
         sendTeams(message.channel, teams)
@@ -57,9 +57,9 @@ function receivedMessage (message) {
   } else if (message.content === `${prefix}pick`) {
     // !pick = select two teams of four based on members in the same voice channel as the user who activated command.
     if (message.member.voice.channel) {
-      if (message.member.voice.channel.members.size >= 8) {
-        const members = message.member.voice.channel.members
-        const teams = randomizeTeams(createPlayerList(members))
+      const players = createPlayerList(message.member.voice.channel.members)
+      if (players.length >= 8) {
+        const teams = randomizeTeams(players)
 
         sendTeams(message.channel, teams)
       } else {
@@ -71,9 +71,9 @@ function receivedMessage (message) {
   } else if (message.content === `${prefix}caps`) {
     // !caps = select two random captains from the members in the same voice channel as user who activated command.
     if (message.member.voice.channel) {
-      if (message.member.voice.channel.members.size >= 2) {
-        const members = message.member.voice.channel.members
-        const captains = randomizeCaptains(createPlayerList(members))
+      const players = createPlayerList(message.member.voice.channel.members)
+      if (players.length >= 2) {
+        const captains = randomizeCaptains(players)
 
         sendCaptains(message.channel, captains)
       } else {
@@ -142,7 +142,9 @@ function selectMap (maps) {
 function createPlayerList (members) {
   const players = []
 
-  members.forEach(element => players.push(element.user.username))
+  members.forEach(member => {
+    if (!member.user.bot) players.push(member.user.username)
+  })
 
   return players
 }
