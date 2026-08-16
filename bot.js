@@ -171,18 +171,10 @@ function randomizeTeams (players) {
 
 // Randomly select two users as captains.
 function randomizeCaptains (players) {
-  let captainOne = ''
-  let captainTwo = ''
   const randNumOne = Math.floor(Math.random() * players.length)
+  const captainOne = players.splice(randNumOne, 1)[0]
   const randNumTwo = Math.floor(Math.random() * players.length)
+  const captainTwo = players.splice(randNumTwo, 1)[0]
 
-  captainOne = players[randNumOne]
-  players.splice(randNumOne, 1)
-
-  captainTwo = players[randNumTwo]
-  players.splice(randNumTwo, 1)
-
-  const captains = [captainOne, captainTwo]
-
-  return captains
+  return [captainOne, captainTwo]
 }
