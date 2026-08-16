@@ -6,27 +6,25 @@ const client = new Discord.Client()
 
 // Array of maps for each mode. Maybe flags for different CoD titles in the future?
 const hardpointMaps = [
-  'Hacienda',
-  'Red Card',
-  'Rewind',
-  'Skyline',
-  'Vault',
-  'Fringe'
+  'Blackheart',
+  'Colossus',
+  'Den',
+  'Exposure',
+  'Scar'
 ]
 
 const searchMaps = [
-  'Dealership',
-  'Hacienda',
-  'Protocol',
-  'Fringe',
-  'Red Card',
-  'Rewind'
+  'Colossus',
+  'Den',
+  'Exposure',
+  'Raid',
+  'Scar'
 ]
 
-const controlMaps = [
-  'Hacienda',
-  'Protocol',
-  'Vault'
+const overloadMaps = [
+  'Den',
+  'Exposure',
+  'Scar'
 ]
 
 // Login to the client using the secret token.
@@ -46,8 +44,8 @@ function receivedMessage (message) {
         const members = message.member.voice.channel.members
         const teams = randomizeTeams(createPlayerList(members))
 
-        sendMaps()
-        sendTeams(teams)
+        sendMaps(message.channel)
+        sendTeams(message.channel, teams)
       } else {
         sendError(message.channel,
           'Please ensure there are at least 8 players in your voice channel!'
@@ -104,7 +102,7 @@ function sendMaps (channel) {
     .setTitle('Randomized Maps')
     .addField('Hardpoint', selectMap(hardpointMaps), true)
     .addField('Search and Destroy', selectMap(searchMaps), true)
-    .addField('Control', selectMap(controlMaps), true)
+    .addField('overload', selectMap(overloadMaps), true)
     .addField('Hardpoint', selectMap(hardpointMaps), true)
     .addField('Search and Destroy', selectMap(searchMaps), true)
 
