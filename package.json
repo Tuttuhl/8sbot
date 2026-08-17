@@ -9,10 +9,8 @@
   "author": "Easton Tuttle",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.10",
     "discord.js": "^12.5.1",
-    "dotenv": "^8.6.0",
-    "request": "^2.88.2"
+    "dotenv": "^8.6.0"
   },
   "devDependencies": {
     "eslint": "^8.23.1",
