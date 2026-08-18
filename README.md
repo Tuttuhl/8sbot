@@ -1,18 +1,18 @@
-<h3 align="center">Call of Duty 8s Discord Bot</h3>
+<h3 align="center">Team Randomization Discord Bot</h3>
 
 ---
 
-<p align="center"> 🤖 Call of Duty 8s bot built for Discord to automate the selection of captains, teams, and maps. 🤖
+<p align="center">Built for Discord to automate the selection of captains, teams, and maps.
     <br> 
 </p>
 
-## 📝 Table of Contents
-+ [Bot Usage](#usage)
+## Table of Contents
++ [Examples](#examples)
 + [Development Tools](#dev_tools)
 + [Authors](#authors)
 + [References](#references)
 
-## 🎈 Bot Usage <a name = "usage"></a>
+## Examples <a name = "examples"></a>
 
 To randomize teams and maps based on who is in the typing user's voice channel:
 ```
@@ -20,14 +20,19 @@ To randomize teams and maps based on who is in the typing user's voice channel:
 ```
 ### Example Output:
 
-> Team 1: Tuttuhl, Kriptonic, Marcoso, NLFTEY
- Team 2: PDoh, EDazzle, Tony, Yogi
+>Team 1: Player 1, Player 2, Player 3, Player 4
 
- >Crossroads | Hardpoint 
- Garrison | Search and Destroy 
- Raid | Control 
- Raid | Hardpoint 
- Garrison | Search and Destroy
+> Team 2: Player 5, Player 6, Player 7, Player 8
+
+> Map 1 | Game Mode 1
+
+> Map 2 | Game Mode 2
+
+> Map 3 | Game Mode 3 
+
+> Map 2 | Game Mode 1
+
+> Map 5 | Game Mode 2
 
 To randomize teams based on who is in the typing user's voice channel:
 ```
@@ -35,8 +40,9 @@ To randomize teams based on who is in the typing user's voice channel:
 ```
 ### Example Output:
 
-> Team 1: Tuttuhl, Kriptonic, Marcoso, NLFTEY
- Team 2: PDoh, EDazzle, Tony, Yogi
+> Team 1: Player 1, Player 2, Player 3, Player 4
+
+> Team 2: Player 5, Player 6, Player 7, Player 8
 
 To randomize captains based on who is in the typing user's voice channel: 
 ```
@@ -44,8 +50,9 @@ To randomize captains based on who is in the typing user's voice channel:
 ```
 ### Example Output:
 
-> Captain 1: Marcoso
- Captain 2: Tony
+> Captain 1: Player 3
+
+> Captain 2: Player 7
 
  To randomize maps:
  ```
@@ -53,20 +60,24 @@ To randomize captains based on who is in the typing user's voice channel:
  ```
 ### Example Output: 
 
->Crossroads | Hardpoint 
- Garrison | Search and Destroy 
- Raid | Control 
- Raid | Hardpoint 
- Garrison | Search and Destroy
+> Map 1 | Game Mode 1
 
-## ⛏️ Development Tools <a name = "dev_tools"></a>
-+ [Discord.js](https://discord.js.org) - Discord API Framework
+> Map 2 | Game Mode 2
+
+> Map 3 | Game Mode 3 
+
+> Map 2 | Game Mode 1
+
+> Map 5 | Game Mode 2
+
+## Development Stack <a name = "stack"></a>
++ [Discord.js](https://discord.js.org)
 + [JavaScript](https://www.javascript.com)
-+ [Heroku](https://www.heroku.com)
 
-## ✍️ Authors <a name = "authors"></a>
+## Authors <a name = "authors"></a>
 + [Kriptonic](https://twitter.com/orale_chhchh) - Idea & Planning
-+ [Tuttuhl](https://github.com/tuttuhl) - JS Development
++ [Tuttuhl](https://github.com/tuttuhl) - Development
 
 ## References <a name = "references"></a>
-+ [Deploying to Heroku](https://youtu.be/OFearuMjI4s)
++ [Discord.js Docs](https://discord.js.org/docs/packages/discord.js/14.27.0)
++ [Cursor - Composer 2.5 Fast](https://cursor.com/)
