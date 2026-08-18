@@ -1,15 +1,18 @@
 {
   "name": "8sbot",
-  "version": "0.1.0",
-  "description": "Call of Duty 8s bot built for Discord to automate the selection of captains, teams, and maps.",
+  "version": "1.0.0",
+  "description": "Discord bot built to automate the selection of captains, teams, and maps for pickup games.",
   "main": "bot.js",
   "scripts": {
-    "dev": "node bot.js"
+    "dev": "node bot.js",
+    "start": "node bot.js",
+    "deploy": "node deploy-commands.js"
   },
-  "author": "Easton Tuttle",
-  "license": "ISC",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
-    "discord.js": "^12.5.1",
+    "discord.js": "14.27.0",
     "dotenv": "^8.6.0"
   },
   "devDependencies": {
