@@ -1,6 +1,6 @@
+import { REST, Routes, SlashCommandBuilder } from 'discord.js'
 require('dotenv').config()
 
-import { REST, Routes, SlashCommandBuilder } from 'discord.js'
 
 const { TOKEN, CLIENT_ID, GUILD_ID } = process.env
 
