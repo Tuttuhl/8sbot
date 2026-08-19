@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js')
+import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js'
 
 const client = new Client({
   intents: [

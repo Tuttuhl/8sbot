@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const { REST, Routes, SlashCommandBuilder } = require('discord.js')
+import { REST, Routes, SlashCommandBuilder } from 'discord.js'
 
 const { TOKEN, CLIENT_ID, GUILD_ID } = process.env
 
@@ -12,20 +12,20 @@ if (!TOKEN || !CLIENT_ID || !GUILD_ID) {
 const commands = [
   new SlashCommandBuilder()
     .setName('maps')
-    .setDescription('Randomly select five maps from the map pool'),
+    .setDescription('Select five maps from the map pool'),
   new SlashCommandBuilder()
     .setName('all')
-    .setDescription('Randomly select five maps and two teams of four players'),
+    .setDescription('Select five maps from the map pool and two teams of four players'),
   new SlashCommandBuilder()
     .setName('pick')
     .setDescription('Select two teams of four from your voice channel'),
   new SlashCommandBuilder()
     .setName('caps')
-    .setDescription('Select two random captains from your voice channel')
+    .setDescription('Select two captains from your voice channel')
 ].map(command => command.toJSON())
 
 const rest = new REST({ version: '10' }).setToken(TOKEN)
 
 rest.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), { body: commands })
   .then(() => console.log('Successfully registered guild slash commands.'))
-  .catch(console.error)
+  .catch(error => console.error('Failed to register guild slash command due to: ', error))
