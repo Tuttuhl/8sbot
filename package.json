@@ -1,12 +1,13 @@
 {
   "name": "8sbot",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Discord bot built to automate the selection of captains, teams, and maps for pickup games.",
   "main": "bot.js",
   "scripts": {
-    "dev": "node bot.js",
-    "start": "node bot.js",
-    "deploy": "node deploy-commands.js"
+    "build": "npx tsc",
+    "dev": "node dist/bot.js",
+    "start": "node dist/bot.js",
+    "deploy": "node dist/deploy-commands.js"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -20,6 +21,7 @@
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.5",
-    "eslint-plugin-promise": "^6.0.1"
+    "eslint-plugin-promise": "^6.0.1",
+    "typescript": "^7.0.2"
   }
 }
