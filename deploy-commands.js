@@ -1,7 +1,6 @@
 import { REST, Routes, SlashCommandBuilder } from 'discord.js'
 require('dotenv').config()
 
-
 const { TOKEN, CLIENT_ID, GUILD_ID } = process.env
 
 if (!TOKEN || !CLIENT_ID || !GUILD_ID) {
