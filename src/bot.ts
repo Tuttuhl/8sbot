@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js'
+import { Client, GatewayIntentBits, EmbedBuilder, Interaction, User, GuildMember, ChatInputCommandInteraction, Collection } from 'discord.js'
 require('dotenv').config()
 
 const client = new Client({
@@ -34,7 +34,7 @@ const overloadMaps = [
 client.login(process.env.TOKEN)
 client.on('interactionCreate', handleInteraction)
 
-async function handleInteraction (interaction) {
+async function handleInteraction (interaction: Interaction) {
   if (!interaction.isChatInputCommand()) return
 
   switch (interaction.commandName) {
@@ -42,20 +42,20 @@ async function handleInteraction (interaction) {
       await interaction.reply({ embeds: [buildMapsEmbed()] })
       break
     case 'all':
-      await handleVoiceCommand(interaction, 8, async (players) => {
+      await handleVoiceCommand(interaction, 8, async (players: string[]) => {
         const teams = randomizeTeams(players)
         await interaction.reply({ embeds: [buildMapsEmbed()] })
         await interaction.followUp({ embeds: [buildTeamsEmbed(teams)] })
       })
       break
     case 'pick':
-      await handleVoiceCommand(interaction, 8, async (players) => {
+      await handleVoiceCommand(interaction, 8, async (players: string[]) => {
         const teams = randomizeTeams(players)
         await interaction.reply({ embeds: [buildTeamsEmbed(teams)] })
       })
       break
     case 'caps':
-      await handleVoiceCommand(interaction, 2, async (players) => {
+      await handleVoiceCommand(interaction, 2, async (players: string[]) => {
         const captains = randomizeCaptains(players)
         await interaction.reply({ embeds: [buildCaptainsEmbed(captains)] })
       })
@@ -63,8 +63,9 @@ async function handleInteraction (interaction) {
   }
 }
 
-async function handleVoiceCommand (interaction, minPlayers, callback) {
-  const voiceChannel = interaction.member.voice.channel
+async function handleVoiceCommand (interaction: ChatInputCommandInteraction, minPlayers: number, callback: Function) {
+  const member = interaction.member as GuildMember
+  const voiceChannel = member.voice.channel
 
   if (!voiceChannel) {
     await sendError(interaction, 'Please join a voice channel first!')
@@ -84,14 +85,14 @@ async function handleVoiceCommand (interaction, minPlayers, callback) {
   await callback(players)
 }
 
-async function sendError (interaction, message) {
+async function sendError (interaction: ChatInputCommandInteraction, message: string) {
   await interaction.reply({
     embeds: [buildErrorEmbed(message)],
     ephemeral: true
   })
 }
 
-function buildErrorEmbed (message) {
+function buildErrorEmbed (message: string) {
   return new EmbedBuilder()
     .setColor('#ff0000')
     .setTitle('ERROR')
@@ -111,7 +112,7 @@ function buildMapsEmbed () {
     )
 }
 
-function buildTeamsEmbed (teams) {
+function buildTeamsEmbed (teams: string[][]) {
   return new EmbedBuilder()
     .setColor('#ffffff')
     .setTitle('Randomized Teams')
@@ -122,7 +123,7 @@ function buildTeamsEmbed (teams) {
     )
 }
 
-function buildCaptainsEmbed (captains) {
+function buildCaptainsEmbed (captains: string[]) {
   return new EmbedBuilder()
     .setColor('#ffffff')
     .setTitle('Randomized Captains')
@@ -133,12 +134,12 @@ function buildCaptainsEmbed (captains) {
     )
 }
 
-function selectMap (maps) {
+function selectMap (maps: string[]) {
   return maps[Math.floor(Math.random() * maps.length)]
 }
 
-function createPlayerList (members) {
-  const players = []
+function createPlayerList (members: Collection<string, GuildMember>) {
+  const players: string[] = []
 
   members.forEach(member => {
     if (!member.user.bot) players.push(member.user.username)
@@ -147,7 +148,7 @@ function createPlayerList (members) {
   return players
 }
 
-function randomizeTeams (players) {
+function randomizeTeams (players: string[]) {
   const teamOne = []
   const teamTwo = []
   const pool = [...players]
@@ -167,7 +168,7 @@ function randomizeTeams (players) {
   return [teamOne, teamTwo]
 }
 
-function randomizeCaptains (players) {
+function randomizeCaptains (players: string[]) {
   const pool = [...players]
   const randNumOne = Math.floor(Math.random() * pool.length)
   const captainOne = pool.splice(randNumOne, 1)[0]
